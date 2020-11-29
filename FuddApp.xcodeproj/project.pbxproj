@@ -3,16 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0D78EBD71B28A31C95F38E95 /* Pods_FuddApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D999C6F05751398951E9470F /* Pods_FuddApp.framework */; };
 		B9B4AB4125725E180013C592 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4025725E180013C592 /* AppDelegate.swift */; };
 		B9B4AB4325725E180013C592 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4225725E180013C592 /* SceneDelegate.swift */; };
-		B9B4AB4525725E180013C592 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4425725E180013C592 /* ViewController.swift */; };
+		B9B4AB4525725E180013C592 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4425725E180013C592 /* HomeViewController.swift */; };
 		B9B4AB4A25725E1C0013C592 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B4AB4925725E1C0013C592 /* Assets.xcassets */; };
 		B9B4AB4D25725E1C0013C592 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B4AB4B25725E1C0013C592 /* LaunchScreen.storyboard */; };
+		B9B4AB6F2572B7700013C592 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB6D2572B7700013C592 /* HomeCollectionViewCell.swift */; };
+		B9B4AB702572B7700013C592 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B4AB6E2572B7700013C592 /* HomeCollectionViewCell.xib */; };
+		B9B4AB762572BD170013C592 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB752572BD170013C592 /* Restaurant.swift */; };
+		B9B4AB8025739D630013C592 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB7E25739D630013C592 /* HeaderView.swift */; };
+		B9B4AB852573A6400013C592 /* RestaurantProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB842573A6400013C592 /* RestaurantProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,10 +26,15 @@
 		B9B4AB3D25725E180013C592 /* FuddApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuddApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B4AB4025725E180013C592 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9B4AB4225725E180013C592 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B9B4AB4425725E180013C592 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B9B4AB4425725E180013C592 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B9B4AB4925725E1C0013C592 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9B4AB4C25725E1C0013C592 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9B4AB4E25725E1C0013C592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9B4AB6D2572B7700013C592 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		B9B4AB6E2572B7700013C592 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		B9B4AB752572BD170013C592 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		B9B4AB7E25739D630013C592 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		B9B4AB842573A6400013C592 /* RestaurantProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantProvider.swift; sourceTree = "<group>"; };
 		D999C6F05751398951E9470F /* Pods_FuddApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FuddApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -69,6 +79,7 @@
 		B9B4AB3F25725E180013C592 /* FuddApp */ = {
 			isa = PBXGroup;
 			children = (
+				B9B4AB742572BCEF0013C592 /* Utilities */,
 				B9B4AB5B257260600013C592 /* Coordinators */,
 				B9B4AB582572600C0013C592 /* Scene */,
 				B9B4AB5725725FFF0013C592 /* Resources */,
@@ -99,7 +110,7 @@
 		B9B4AB582572600C0013C592 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				B9B4AB4425725E180013C592 /* ViewController.swift */,
+				B9B4AB6B2572B7440013C592 /* Home */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -109,6 +120,34 @@
 			children = (
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		B9B4AB6B2572B7440013C592 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B9B4AB4425725E180013C592 /* HomeViewController.swift */,
+				B9B4AB6C2572B7540013C592 /* HomeCollectionView */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B9B4AB6C2572B7540013C592 /* HomeCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				B9B4AB6D2572B7700013C592 /* HomeCollectionViewCell.swift */,
+				B9B4AB6E2572B7700013C592 /* HomeCollectionViewCell.xib */,
+				B9B4AB7E25739D630013C592 /* HeaderView.swift */,
+			);
+			path = HomeCollectionView;
+			sourceTree = "<group>";
+		};
+		B9B4AB742572BCEF0013C592 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B9B4AB752572BD170013C592 /* Restaurant.swift */,
+				B9B4AB842573A6400013C592 /* RestaurantProvider.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		CF0B5E2E65385F78691BC5A6 /* Pods */ = {
@@ -132,6 +171,7 @@
 				B9B4AB3925725E180013C592 /* Sources */,
 				B9B4AB3A25725E180013C592 /* Frameworks */,
 				B9B4AB3B25725E180013C592 /* Resources */,
+				A4F9097CD1A0D032AB5E57A5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,12 +221,30 @@
 			files = (
 				B9B4AB4D25725E1C0013C592 /* LaunchScreen.storyboard in Resources */,
 				B9B4AB4A25725E1C0013C592 /* Assets.xcassets in Resources */,
+				B9B4AB702572B7700013C592 /* HomeCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		A4F9097CD1A0D032AB5E57A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FuddApp/Pods-FuddApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FuddApp/Pods-FuddApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FuddApp/Pods-FuddApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B9B4AB60257262BE0013C592 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,9 +292,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9B4AB4525725E180013C592 /* ViewController.swift in Sources */,
+				B9B4AB762572BD170013C592 /* Restaurant.swift in Sources */,
+				B9B4AB8025739D630013C592 /* HeaderView.swift in Sources */,
+				B9B4AB852573A6400013C592 /* RestaurantProvider.swift in Sources */,
+				B9B4AB4525725E180013C592 /* HomeViewController.swift in Sources */,
 				B9B4AB4125725E180013C592 /* AppDelegate.swift in Sources */,
 				B9B4AB4325725E180013C592 /* SceneDelegate.swift in Sources */,
+				B9B4AB6F2572B7700013C592 /* HomeCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
