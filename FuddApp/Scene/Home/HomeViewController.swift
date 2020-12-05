@@ -33,7 +33,11 @@ class HomeViewController: UIViewController {
             myCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
         
-        createSnapshot(fromData: RestaurantProvider.data)
+        createSnapshot(withMain: RestaurantProvider.data.main, lastViewed: RestaurantProvider.data.lastViewed, nextToYou: RestaurantProvider.data.nextToYou)
+    }
+    
+    func getData() {
+        
     }
     
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -148,13 +152,13 @@ class HomeViewController: UIViewController {
         return dataSource
     }
     
-    func createSnapshot(fromData data: RestaurantData) {
+    func createSnapshot(withMain main: [Restaurant], lastViewed: [Restaurant], nextToYou: [Restaurant]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
         snapshot.appendSections(Section.allCases)
         
-        snapshot.appendItems(data.main, toSection: .main)
-        snapshot.appendItems(data.lastViewed, toSection: .lastView)
-        snapshot.appendItems(data.nextToYou, toSection: .nextToYou)
+        snapshot.appendItems(main, toSection: .main)
+        snapshot.appendItems(lastViewed, toSection: .lastView)
+        snapshot.appendItems(nextToYou, toSection: .nextToYou)
         
         dataSource.apply(snapshot, animatingDifferences: true)
     }
