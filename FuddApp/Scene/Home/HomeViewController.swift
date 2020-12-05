@@ -10,69 +10,69 @@ import PromiseKit
 
 class HomeViewController: UIViewController {
         
+    enum State {
+        case idle
+        case loading
+        case loaded(main: [Restaurant], nextToYou: [Restaurant], nearest: [Restaurant])
+        case error
+    }
+    
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Restaurant>
-    private  lazy  var dataSource = makeDataSource ()
-    let services = MockServices()
+    private lazy var datasource = dataSource
+    
+    var status: State = .idle {
+        didSet {
+            switch status {
+            case .idle: break
+            case .loading:
+                loadingView.isHidden = false
+            case .loaded(let main, let nextToYou, let nearest):
+                loadingView.isHidden = true
+                createSnapshot(withMain: main, lastViewed: nearest, nextToYou: nextToYou)
+            case .error:
+                print("error")
+
+            }
+        }
+    }
     
     lazy var myCollectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collection.backgroundColor = .white
-        collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "homeCell")
         collection.register(HeaderView.self, forSupplementaryViewOfKind: "headerElementKind", withReuseIdentifier: HeaderView.reuseIdentifier)
         return collection
     }()
     
+    lazy var loadingView: LoadingView = {
+        let view = LoadingView()
+        view.isHidden = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(myCollectionView)
-        
-        NSLayoutConstraint.activate([
-            myCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            myCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            myCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            myCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        ])
-        
-        getData()
-    }
-    
-    func getData() {
-        let favouritePromise = getFavourite()
-        let mainPromise = getMain()
-        let nextPromise = getNexToYou()
-        
-        // UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        firstly {
-            when(fulfilled: favouritePromise, mainPromise, nextPromise)
-        }.done { favourites, nearest, nextToYou in
-            self.createSnapshot(withMain: favourites, lastViewed: nearest, nextToYou: nextToYou)
-        }.ensure {
-            // UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        }.catch { error in
-            print(error)
-        }
+        myCollectionView.pin(to: view)
+        loadingView.pin(to: view)
     }
     
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
        
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment)
-              -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
            
             let sectionLayoutKind = Section.allCases[sectionIndex]
             switch sectionLayoutKind {
             case .main, .nextToYou:
-                return self.makeMainLayout()
+                return self.mainLayout
             case .lastView:
-                return self.makeLastViewedLayout()
+                return self.lastViewedLayout
             }
           }
           return layout
     }
     
-    func makeMainLayout() -> NSCollectionLayoutSection {
+    var mainLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalWidth(2/3))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -101,7 +101,7 @@ class HomeViewController: UIViewController {
         return section
     }
     
-    func makeLastViewedLayout() -> NSCollectionLayoutSection {
+    var lastViewedLayout: NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -139,7 +139,7 @@ class HomeViewController: UIViewController {
         return section
     }
     
-    func makeDataSource() -> DataSource {
+    var dataSource: DataSource {
         
         let dataSource = DataSource(collectionView: myCollectionView, cellProvider: { (collectionView, indexPath, restaurant) ->
             UICollectionViewCell? in
@@ -176,51 +176,8 @@ class HomeViewController: UIViewController {
         snapshot.appendItems(lastViewed, toSection: .lastView)
         snapshot.appendItems(nextToYou, toSection: .nextToYou)
         
-        dataSource.apply(snapshot, animatingDifferences: true)
+        datasource.apply(snapshot, animatingDifferences: true)
     }
-    
-    func getFavourite() -> Promise<[Restaurant]> {
-        
-        return Promise<[Restaurant]> { seal in
-            
-            services.getFavourite { (favouriteRestaurants, error) in
-                if let favouriteRestaurants = favouriteRestaurants {
-                    seal.fulfill(favouriteRestaurants)
-                } else if let error = error {
-                    seal.reject(error)
-                }
-            }
-        }
-    }
-    
-    func getMain() -> Promise<[Restaurant]> {
-        
-        return Promise<[Restaurant]> { seal in
-            
-            services.getMain { (mains, error) in
-                if let mains = mains {
-                    seal.fulfill(mains)
-                } else if let error = error {
-                    seal.reject(error)
-                }
-            }
-        }
-    }
-    
-    func getNexToYou() -> Promise<[Restaurant]> {
-        
-        return Promise<[Restaurant]> { seal in
-            
-            services.getNexToYou { (nexToYou, error) in
-                if let nexToYou = nexToYou {
-                    seal.fulfill(nexToYou)
-                } else if let error = error {
-                    seal.reject(error)
-                }
-            }
-        }
-    }
-    
 }
 
 extension HomeViewController {

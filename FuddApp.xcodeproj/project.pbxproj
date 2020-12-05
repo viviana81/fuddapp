@@ -14,6 +14,8 @@
 		B9B2B2BB257C06CF00749932 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2BA257C06CF00749932 /* HomeCoordinator.swift */; };
 		B9B2B2BE257C06E500749932 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2BD257C06E500749932 /* Coordinator.swift */; };
 		B9B2B2C1257C073200749932 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2C0257C073200749932 /* AppCoordinator.swift */; };
+		B9B2B2D4257C0ADF00749932 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2D3257C0ADF00749932 /* LoadingView.swift */; };
+		B9B2B2D8257C0D2900749932 /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2D7257C0D2900749932 /* UIView+Pin.swift */; };
 		B9B4AB4125725E180013C592 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4025725E180013C592 /* AppDelegate.swift */; };
 		B9B4AB4325725E180013C592 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4225725E180013C592 /* SceneDelegate.swift */; };
 		B9B4AB4525725E180013C592 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4425725E180013C592 /* HomeViewController.swift */; };
@@ -34,6 +36,8 @@
 		B9B2B2BA257C06CF00749932 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B9B2B2BD257C06E500749932 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B9B2B2C0257C073200749932 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = FuddApp/Protocol/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
+		B9B2B2D3257C0ADF00749932 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		B9B2B2D7257C0D2900749932 /* UIView+Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Pin.swift"; sourceTree = "<group>"; };
 		B9B4AB3D25725E180013C592 /* FuddApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuddApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B4AB4025725E180013C592 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9B4AB4225725E180013C592 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +90,22 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		B9B2B2D2257C0AD100749932 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B9B2B2D3257C0ADF00749932 /* LoadingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B9B2B2D6257C0D1E00749932 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B9B2B2D7257C0D2900749932 /* UIView+Pin.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B9B4AB3425725E180013C592 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +127,8 @@
 		B9B4AB3F25725E180013C592 /* FuddApp */ = {
 			isa = PBXGroup;
 			children = (
+				B9B2B2D6257C0D1E00749932 /* Extensions */,
+				B9B2B2D2257C0AD100749932 /* Views */,
 				B9B2B284257C04CC00749932 /* Protocol */,
 				B9B2B283257C04C200749932 /* Services */,
 				B9B4AB742572BCEF0013C592 /* Utilities */,
@@ -334,6 +356,8 @@
 				B9B2B286257C04E200749932 /* Services.swift in Sources */,
 				B9B2B2BB257C06CF00749932 /* HomeCoordinator.swift in Sources */,
 				B9B4AB4325725E180013C592 /* SceneDelegate.swift in Sources */,
+				B9B2B2D4257C0ADF00749932 /* LoadingView.swift in Sources */,
+				B9B2B2D8257C0D2900749932 /* UIView+Pin.swift in Sources */,
 				B9B4AB6F2572B7700013C592 /* HomeCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
