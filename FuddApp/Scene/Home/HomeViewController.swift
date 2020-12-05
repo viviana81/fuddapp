@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import PromiseKit
 
 class HomeViewController: UIViewController {
         
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Restaurant>
     private  lazy  var dataSource = makeDataSource ()
+    let services = MockServices()
     
     lazy var myCollectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
@@ -32,10 +34,26 @@ class HomeViewController: UIViewController {
             myCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             myCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
+        
+        getData()
     }
     
     func getData() {
+        let favouritePromise = getFavourite()
+        let mainPromise = getMain()
+        let nextPromise = getNexToYou()
         
+        // UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        firstly {
+            when(fulfilled: favouritePromise, mainPromise, nextPromise)
+        }.done { favourites, nearest, nextToYou in
+            self.createSnapshot(withMain: favourites, lastViewed: nearest, nextToYou: nextToYou)
+        }.ensure {
+            // UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }.catch { error in
+            print(error)
+        }
     }
     
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -160,6 +178,49 @@ class HomeViewController: UIViewController {
         
         dataSource.apply(snapshot, animatingDifferences: true)
     }
+    
+    func getFavourite() -> Promise<[Restaurant]> {
+        
+        return Promise<[Restaurant]> { seal in
+            
+            services.getFavourite { (favouriteRestaurants, error) in
+                if let favouriteRestaurants = favouriteRestaurants {
+                    seal.fulfill(favouriteRestaurants)
+                } else if let error = error {
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
+    func getMain() -> Promise<[Restaurant]> {
+        
+        return Promise<[Restaurant]> { seal in
+            
+            services.getMain { (mains, error) in
+                if let mains = mains {
+                    seal.fulfill(mains)
+                } else if let error = error {
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
+    func getNexToYou() -> Promise<[Restaurant]> {
+        
+        return Promise<[Restaurant]> { seal in
+            
+            services.getNexToYou { (nexToYou, error) in
+                if let nexToYou = nexToYou {
+                    seal.fulfill(nexToYou)
+                } else if let error = error {
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
 }
 
 extension HomeViewController {

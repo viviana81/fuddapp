@@ -8,4 +8,5 @@ target 'FuddApp' do
    pod 'SwiftLint'
    pod 'Kingfisher'
    pod 'Moya'
+   pod 'PromiseKit'
 end
