@@ -7,5 +7,5 @@ target 'FuddApp' do
   # Pods for FuddApp
    pod 'SwiftLint'
    pod 'Kingfisher'
-
+   pod 'Moya'
 end

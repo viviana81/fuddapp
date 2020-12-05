@@ -32,8 +32,6 @@ class HomeViewController: UIViewController {
             myCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             myCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
-        
-        createSnapshot(withMain: RestaurantProvider.data.main, lastViewed: RestaurantProvider.data.lastViewed, nextToYou: RestaurantProvider.data.nextToYou)
     }
     
     func getData() {
