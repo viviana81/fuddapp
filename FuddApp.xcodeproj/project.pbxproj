@@ -11,6 +11,9 @@
 		B9B2B286257C04E200749932 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B285257C04E100749932 /* Services.swift */; };
 		B9B2B289257C04E600749932 /* MockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B288257C04E600749932 /* MockServices.swift */; };
 		B9B2B28C257C04EA00749932 /* FudAppApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B28B257C04EA00749932 /* FudAppApi.swift */; };
+		B9B2B2BB257C06CF00749932 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2BA257C06CF00749932 /* HomeCoordinator.swift */; };
+		B9B2B2BE257C06E500749932 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2BD257C06E500749932 /* Coordinator.swift */; };
+		B9B2B2C1257C073200749932 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2C0257C073200749932 /* AppCoordinator.swift */; };
 		B9B4AB4125725E180013C592 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4025725E180013C592 /* AppDelegate.swift */; };
 		B9B4AB4325725E180013C592 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4225725E180013C592 /* SceneDelegate.swift */; };
 		B9B4AB4525725E180013C592 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4425725E180013C592 /* HomeViewController.swift */; };
@@ -28,6 +31,9 @@
 		B9B2B285257C04E100749932 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		B9B2B288257C04E600749932 /* MockServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServices.swift; sourceTree = "<group>"; };
 		B9B2B28B257C04EA00749932 /* FudAppApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FudAppApi.swift; sourceTree = "<group>"; };
+		B9B2B2BA257C06CF00749932 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		B9B2B2BD257C06E500749932 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		B9B2B2C0257C073200749932 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = FuddApp/Protocol/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		B9B4AB3D25725E180013C592 /* FuddApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuddApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B4AB4025725E180013C592 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9B4AB4225725E180013C592 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				B9B2B285257C04E100749932 /* Services.swift */,
+				B9B2B2BD257C06E500749932 /* Coordinator.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -141,6 +148,7 @@
 		B9B4AB5B257260600013C592 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				B9B2B2C0257C073200749932 /* AppCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -150,6 +158,7 @@
 			children = (
 				B9B4AB4425725E180013C592 /* HomeViewController.swift */,
 				B9B4AB6C2572B7540013C592 /* HomeCollectionView */,
+				B9B2B2BA257C06CF00749932 /* HomeCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -314,13 +323,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B2B2C1257C073200749932 /* AppCoordinator.swift in Sources */,
 				B9B4AB762572BD170013C592 /* Restaurant.swift in Sources */,
 				B9B4AB8025739D630013C592 /* HeaderView.swift in Sources */,
 				B9B2B289257C04E600749932 /* MockServices.swift in Sources */,
 				B9B2B28C257C04EA00749932 /* FudAppApi.swift in Sources */,
 				B9B4AB4525725E180013C592 /* HomeViewController.swift in Sources */,
 				B9B4AB4125725E180013C592 /* AppDelegate.swift in Sources */,
+				B9B2B2BE257C06E500749932 /* Coordinator.swift in Sources */,
 				B9B2B286257C04E200749932 /* Services.swift in Sources */,
+				B9B2B2BB257C06CF00749932 /* HomeCoordinator.swift in Sources */,
 				B9B4AB4325725E180013C592 /* SceneDelegate.swift in Sources */,
 				B9B4AB6F2572B7700013C592 /* HomeCollectionViewCell.swift in Sources */,
 			);
