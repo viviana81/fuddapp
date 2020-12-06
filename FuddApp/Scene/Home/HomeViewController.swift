@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
     lazy var myCollectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collection.backgroundColor = .white
-        collection.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "homeCell")
+        collection.register(HomeCollectionViewCell.self)
         collection.register(HeaderView.self, forSupplementaryViewOfKind: "headerElementKind", withReuseIdentifier: HeaderView.reuseIdentifier)
         return collection
     }()
@@ -144,10 +144,8 @@ class HomeViewController: UIViewController {
         let dataSource = DataSource(collectionView: myCollectionView, cellProvider: { (collectionView, indexPath, restaurant) ->
             UICollectionViewCell? in
             
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "homeCell",
-                for: indexPath) as? HomeCollectionViewCell
-            cell?.configure(withRestaurant: restaurant)
+            let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.configure(withRestaurant: restaurant)
             return cell
         })
         

@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class HomeCollectionViewCell: UICollectionViewCell {
+class HomeCollectionViewCell: UICollectionViewCell, Reusable {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UILabel!
