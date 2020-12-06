@@ -9,14 +9,28 @@ import UIKit
 
 class ErrorView: UIView {
     
-    lazy var error: UILabel = {
+    var onTapAction: (() -> Void)?
+    
+    lazy var errorLabel: UILabel = {
         var label = UILabel()
         label.text = "Siamo spiacenti, si è verificato un errore"
-        label.font = UIFont(name: "System", size: 28)
+        label.font = .systemFont(ofSize: 17)
         label.textColor = UIColor.gray
         label.backgroundColor = UIColor.white
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    lazy var retryButton: UIButton = {
+        var button = UIButton()
+        button.setTitle("Retry", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(retryAction), for: .touchUpInside)
+        return button
     }()
     
     init() {
@@ -31,14 +45,27 @@ class ErrorView: UIView {
     }
     
     private func configureUI() {
-        addSubview(error)
+        addSubview(errorLabel)
+        addSubview(retryButton)
     }
     
     private func configureConstraints() {
         
         NSLayoutConstraint.activate([
-            error.centerYAnchor.constraint(equalTo: centerYAnchor),
-            error.centerXAnchor.constraint(equalTo: centerXAnchor)
+            errorLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            retryButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            retryButton.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 8)
         ])
+    }
+    
+    @objc
+    func retryAction() {
+        onTapAction?()
+    }
+    
+    func setError(_ error: String ) {
+        errorLabel.text = error
     }
 }

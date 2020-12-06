@@ -10,6 +10,7 @@ import UIKit
 class HeaderView: UICollectionReusableView {
     
     static let reuseIdentifier = "supplementary-header-reusable-view"
+    static let kind = "supplementary-header-reusable-kind"
     
     lazy var label: UILabel = {
         let label = UILabel()

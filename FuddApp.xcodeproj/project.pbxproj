@@ -190,9 +190,9 @@
 		B9B4AB6B2572B7440013C592 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B9B2B2BA257C06CF00749932 /* HomeCoordinator.swift */,
 				B9B4AB4425725E180013C592 /* HomeViewController.swift */,
 				B9B4AB6C2572B7540013C592 /* HomeCollectionView */,
-				B9B2B2BA257C06CF00749932 /* HomeCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";

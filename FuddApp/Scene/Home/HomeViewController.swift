@@ -8,31 +8,38 @@
 import UIKit
 import PromiseKit
 
+protocol HomeViewControllerDelegate: class {
+    func userDidTapOnRetryButton()
+}
+
 class HomeViewController: UIViewController {
         
     enum State {
         case idle
         case loading
         case loaded(main: [Restaurant], nextToYou: [Restaurant], nearest: [Restaurant])
-        case error
+        case error(message: String)
     }
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Restaurant>
     private lazy var datasource = dataSource
     
+    weak var delegate: HomeViewControllerDelegate?
     var status: State = .idle {
         didSet {
             switch status {
             case .idle: break
             case .loading:
                 loadingView.isHidden = false
+                errorView.isHidden = true
             case .loaded(let main, let nextToYou, let nearest):
                 loadingView.isHidden = true
                 errorView.isHidden = true
                 createSnapshot(withMain: main, lastViewed: nearest, nextToYou: nextToYou)
-            case .error:
+            case .error(let message):
+                loadingView.isHidden = true
                 errorView.isHidden = false
-
+                errorView.setError(message)
             }
         }
     }
@@ -41,7 +48,7 @@ class HomeViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collection.backgroundColor = .white
         collection.register(HomeCollectionViewCell.self)
-        collection.register(HeaderView.self, forSupplementaryViewOfKind: "headerElementKind", withReuseIdentifier: HeaderView.reuseIdentifier)
+        collection.register(HeaderView.self, forSupplementaryViewOfKind: HeaderView.kind, withReuseIdentifier: HeaderView.reuseIdentifier)
         return collection
     }()
     
@@ -54,6 +61,9 @@ class HomeViewController: UIViewController {
     lazy var errorView: ErrorView = {
         let view = ErrorView()
         view.isHidden = true
+        view.onTapAction = { [weak self] in
+            self?.delegate?.userDidTapOnRetryButton()
+        }
         return view
     }()
     
@@ -72,22 +82,21 @@ class HomeViewController: UIViewController {
             let sectionLayoutKind = Section.allCases[sectionIndex]
             switch sectionLayoutKind {
             case .main, .nextToYou:
-                return self.mainLayout
+                return self.fullItemLayout
             case .lastView:
-                return self.lastViewedLayout
+                return self.squareItemLayout
             }
           }
           return layout
     }
     
-    var mainLayout: NSCollectionLayoutSection {
+    var fullItemLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalWidth(1.0))
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(200),
-            heightDimension: .absolute(200))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.80),
+                                               heightDimension: .absolute(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
@@ -100,7 +109,7 @@ class HomeViewController: UIViewController {
             heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
-            elementKind: "headerElementKind",
+            elementKind: HeaderView.kind,
             alignment: .top)
         
         let section = NSCollectionLayoutSection(group: group)
@@ -110,16 +119,16 @@ class HomeViewController: UIViewController {
         return section
     }
     
-    var lastViewedLayout: NSCollectionLayoutSection {
+    var squareItemLayout: NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(1.0))
-       
+            heightDimension: .fractionalHeight(1.0))
+        
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(200),
+            widthDimension: .absolute(186),
             heightDimension: .absolute(200))
         
         let group = NSCollectionLayoutGroup.vertical(
@@ -138,7 +147,7 @@ class HomeViewController: UIViewController {
             heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
-            elementKind: "headerElementKind",
+            elementKind: HeaderView.kind,
             alignment: .top)
         
         let section = NSCollectionLayoutSection(group: group)
