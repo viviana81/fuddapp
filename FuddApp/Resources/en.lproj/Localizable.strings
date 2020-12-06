@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  FuddApp
+
+  Created by Viviana Capolvenere on 06/12/20.
+  
+*/
+
+
+// Home
+"home.headers.sections.main" = "Main";
+"home.headers.sections.favourite" = "Favourite";
+"home.headers.sections.nextToYou" = "Next to you";

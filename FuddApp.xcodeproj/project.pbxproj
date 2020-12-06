@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0D78EBD71B28A31C95F38E95 /* Pods_FuddApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D999C6F05751398951E9470F /* Pods_FuddApp.framework */; };
+		B9314884257D555E00CBBA59 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9314882257D555E00CBBA59 /* DetailViewController.swift */; };
+		B9314885257D555E00CBBA59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9314883257D555E00CBBA59 /* DetailViewController.xib */; };
+		B9314889257D5CC500CBBA59 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B931488B257D5CC500CBBA59 /* Localizable.strings */; };
 		B9B2B286257C04E200749932 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B285257C04E100749932 /* Services.swift */; };
 		B9B2B289257C04E600749932 /* MockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B288257C04E600749932 /* MockServices.swift */; };
 		B9B2B28C257C04EA00749932 /* FudAppApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B28B257C04EA00749932 /* FudAppApi.swift */; };
@@ -19,7 +22,6 @@
 		B9B2B2DB257CE57D00749932 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2DA257CE57D00749932 /* ReusableView.swift */; };
 		B9B2B2DE257CE77600749932 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2DD257CE77600749932 /* ErrorView.swift */; };
 		B9B2B2E5257CEAF200749932 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B2E4257CEAF200749932 /* Localizable.swift */; };
-		B9B2B2E8257CEB7300749932 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B9B2B2E7257CEB7300749932 /* Localizable.strings */; };
 		B9B4AB4125725E180013C592 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4025725E180013C592 /* AppDelegate.swift */; };
 		B9B4AB4325725E180013C592 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4225725E180013C592 /* SceneDelegate.swift */; };
 		B9B4AB4525725E180013C592 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B4AB4425725E180013C592 /* HomeViewController.swift */; };
@@ -34,6 +36,11 @@
 /* Begin PBXFileReference section */
 		3D49DF5C9E4BEBB780526451 /* Pods-FuddApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FuddApp.release.xcconfig"; path = "Target Support Files/Pods-FuddApp/Pods-FuddApp.release.xcconfig"; sourceTree = "<group>"; };
 		6B81495D70874B5C57B4FF45 /* Pods-FuddApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FuddApp.debug.xcconfig"; path = "Target Support Files/Pods-FuddApp/Pods-FuddApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B9314882257D555E00CBBA59 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B9314883257D555E00CBBA59 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		B9314887257D5CB700CBBA59 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B931488A257D5CC500CBBA59 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B931488D257D5CCE00CBBA59 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B9B2B285257C04E100749932 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		B9B2B288257C04E600749932 /* MockServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServices.swift; sourceTree = "<group>"; };
 		B9B2B28B257C04EA00749932 /* FudAppApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FudAppApi.swift; sourceTree = "<group>"; };
@@ -45,7 +52,6 @@
 		B9B2B2DA257CE57D00749932 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		B9B2B2DD257CE77600749932 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		B9B2B2E4257CEAF200749932 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
-		B9B2B2E7257CEB7300749932 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		B9B4AB3D25725E180013C592 /* FuddApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuddApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B4AB4025725E180013C592 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9B4AB4225725E180013C592 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +84,15 @@
 				D999C6F05751398951E9470F /* Pods_FuddApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9314881257D554600CBBA59 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B9314882257D555E00CBBA59 /* DetailViewController.swift */,
+				B9314883257D555E00CBBA59 /* DetailViewController.xib */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		B9B2B283257C04C200749932 /* Services */ = {
@@ -166,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				B9B4AB4925725E1C0013C592 /* Assets.xcassets */,
-				B9B2B2E7257CEB7300749932 /* Localizable.strings */,
+				B931488B257D5CC500CBBA59 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -174,6 +189,7 @@
 		B9B4AB582572600C0013C592 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				B9314881257D554600CBBA59 /* Detail */,
 				B9B4AB6B2572B7440013C592 /* Home */,
 			);
 			path = Scene;
@@ -268,6 +284,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = B9B4AB3425725E180013C592;
 			productRefGroup = B9B4AB3E25725E180013C592 /* Products */;
@@ -285,7 +302,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B4AB4D25725E1C0013C592 /* LaunchScreen.storyboard in Resources */,
-				B9B2B2E8257CEB7300749932 /* Localizable.strings in Resources */,
+				B9314889257D5CC500CBBA59 /* Localizable.strings in Resources */,
+				B9314885257D555E00CBBA59 /* DetailViewController.xib in Resources */,
 				B9B4AB4A25725E1C0013C592 /* Assets.xcassets in Resources */,
 				B9B4AB702572B7700013C592 /* HomeCollectionViewCell.xib in Resources */,
 			);
@@ -367,6 +385,7 @@
 				B9B4AB4525725E180013C592 /* HomeViewController.swift in Sources */,
 				B9B2B2DB257CE57D00749932 /* ReusableView.swift in Sources */,
 				B9B4AB4125725E180013C592 /* AppDelegate.swift in Sources */,
+				B9314884257D555E00CBBA59 /* DetailViewController.swift in Sources */,
 				B9B2B2BE257C06E500749932 /* Coordinator.swift in Sources */,
 				B9B2B286257C04E200749932 /* Services.swift in Sources */,
 				B9B2B2BB257C06CF00749932 /* HomeCoordinator.swift in Sources */,
@@ -381,10 +400,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B931488B257D5CC500CBBA59 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B931488A257D5CC500CBBA59 /* it */,
+				B931488D257D5CCE00CBBA59 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B9B4AB4B25725E1C0013C592 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B9B4AB4C25725E1C0013C592 /* Base */,
+				B9314887257D5CB700CBBA59 /* it */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -396,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -457,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

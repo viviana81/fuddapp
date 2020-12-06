@@ -10,6 +10,7 @@ import PromiseKit
 
 protocol HomeViewControllerDelegate: class {
     func userDidTapOnRetryButton()
+    func userDidTapOnRestaurant(_ restaurant: Restaurant)
 }
 
 class HomeViewController: UIViewController {
@@ -17,12 +18,12 @@ class HomeViewController: UIViewController {
     enum State {
         case idle
         case loading
-        case loaded(main: [Restaurant], nextToYou: [Restaurant], nearest: [Restaurant])
+        case loaded(main: [Restaurant], favourite: [Restaurant], nextToYou: [Restaurant])
         case error(message: String)
     }
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Restaurant>
-    private lazy var datasource = dataSource
+    private lazy var datasource = makeDataSource()
     
     weak var delegate: HomeViewControllerDelegate?
     var status: State = .idle {
@@ -32,10 +33,10 @@ class HomeViewController: UIViewController {
             case .loading:
                 loadingView.isHidden = false
                 errorView.isHidden = true
-            case .loaded(let main, let nextToYou, let nearest):
+            case .loaded(let main, let favourite, let nextToYou):
                 loadingView.isHidden = true
                 errorView.isHidden = true
-                createSnapshot(withMain: main, lastViewed: nearest, nextToYou: nextToYou)
+                createSnapshot(withMain: main, favourite: favourite, nextToYou: nextToYou)
             case .error(let message):
                 loadingView.isHidden = true
                 errorView.isHidden = false
@@ -46,9 +47,10 @@ class HomeViewController: UIViewController {
     
     lazy var myCollectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
-        collection.backgroundColor = .white
+        collection.backgroundColor = .systemBackground
         collection.register(HomeCollectionViewCell.self)
         collection.register(HeaderView.self, forSupplementaryViewOfKind: HeaderView.kind, withReuseIdentifier: HeaderView.reuseIdentifier)
+        collection.delegate = self
         return collection
     }()
     
@@ -83,7 +85,7 @@ class HomeViewController: UIViewController {
             switch sectionLayoutKind {
             case .main, .nextToYou:
                 return self.fullItemLayout
-            case .lastView:
+            case .favourite:
                 return self.squareItemLayout
             }
           }
@@ -157,7 +159,7 @@ class HomeViewController: UIViewController {
         return section
     }
     
-    var dataSource: DataSource {
+    func makeDataSource() -> DataSource {
         
         let dataSource = DataSource(collectionView: myCollectionView, cellProvider: { (collectionView, indexPath, restaurant) ->
             UICollectionViewCell? in
@@ -184,12 +186,12 @@ class HomeViewController: UIViewController {
         return dataSource
     }
     
-    func createSnapshot(withMain main: [Restaurant], lastViewed: [Restaurant], nextToYou: [Restaurant]) {
+    func createSnapshot(withMain main: [Restaurant], favourite: [Restaurant], nextToYou: [Restaurant]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
         snapshot.appendSections(Section.allCases)
         
         snapshot.appendItems(main, toSection: .main)
-        snapshot.appendItems(lastViewed, toSection: .lastView)
+        snapshot.appendItems(favourite, toSection: .favourite)
         snapshot.appendItems(nextToYou, toSection: .nextToYou)
         
         datasource.apply(snapshot, animatingDifferences: true)
@@ -200,18 +202,26 @@ extension HomeViewController {
     
     enum Section: CaseIterable {
         case main
-        case lastView
+        case favourite
         case nextToYou
         
         var header: String {
             switch self {
             case .main:
-                return "Le migliori recensioni"
-            case .lastView:
-                return "Ultimi visualizzati"
+                return "home.headers.sections.main".localized
+            case .favourite:
+                return "home.headers.sections.favourite".localized
             case .nextToYou:
-                return "Attorno a te"
+                return "home.headers.sections.nextToYou".localized
             }
         }
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedRestaurant = datasource.itemIdentifier(for: indexPath) else { return }
+        delegate?.userDidTapOnRestaurant(selectedRestaurant)
+        
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import PromiseKit
 
-class HomeCoordinator: Coordinator, HomeViewControllerDelegate {
+class HomeCoordinator: Coordinator {
     
     var coordinators: [Coordinator] = []
     let homeViewController: HomeViewController
@@ -39,9 +39,9 @@ class HomeCoordinator: Coordinator, HomeViewControllerDelegate {
         homeViewController.status = .loading
         
         firstly {
-            when(fulfilled: favouritePromise, mainPromise, nextPromise)
-        }.done { favourites, nearest, nextToYou in
-            self.homeViewController.status = .loaded(main: favourites, nextToYou: nextToYou, nearest: nearest)
+            when(fulfilled: mainPromise, favouritePromise, nextPromise)
+        }.done { main, favourite, nextToYou in
+            self.homeViewController.status = .loaded(main: main, favourite: favourite, nextToYou: nextToYou)
         }.catch { error in
             self.homeViewController.status = .error(message: error.localizedDescription)
             print(error)
@@ -89,8 +89,15 @@ class HomeCoordinator: Coordinator, HomeViewControllerDelegate {
             }
         }
     }
-    
+}
+
+extension HomeCoordinator: HomeViewControllerDelegate {
     func userDidTapOnRetryButton() {
         getData()
+    }
+    
+    func userDidTapOnRestaurant(_ restaurant: Restaurant) {
+        let detail = DetailViewController(restaurant: restaurant)
+        homeViewController.navigationController?.pushViewController(detail, animated: true)
     }
 }
