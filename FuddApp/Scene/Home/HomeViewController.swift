@@ -28,9 +28,10 @@ class HomeViewController: UIViewController {
                 loadingView.isHidden = false
             case .loaded(let main, let nextToYou, let nearest):
                 loadingView.isHidden = true
+                errorView.isHidden = true
                 createSnapshot(withMain: main, lastViewed: nearest, nextToYou: nextToYou)
             case .error:
-                print("error")
+                errorView.isHidden = false
 
             }
         }
@@ -50,11 +51,18 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    lazy var errorView: ErrorView = {
+        let view = ErrorView()
+        view.isHidden = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         myCollectionView.pin(to: view)
         loadingView.pin(to: view)
+        errorView.pin(to: view)
     }
     
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -74,11 +82,12 @@ class HomeViewController: UIViewController {
     
     var mainLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalWidth(2/3))
+                                              heightDimension: .fractionalWidth(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.80),
-                                               heightDimension: .estimated(100))
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(200),
+            heightDimension: .absolute(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
@@ -110,8 +119,8 @@ class HomeViewController: UIViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(186),
-            heightDimension: .absolute(186))
+            widthDimension: .absolute(200),
+            heightDimension: .absolute(200))
         
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: groupSize,

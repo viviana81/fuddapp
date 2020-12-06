@@ -11,6 +11,8 @@ struct Restaurant: Decodable, Hashable {
     let id: String
     let name: String
     let image: String
+    let type: String
+    let price: String
 }
 
 struct RestaurantData {
