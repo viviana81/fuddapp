@@ -17,8 +17,8 @@ class HomeCollectionViewCell: UICollectionViewCell, Reusable {
     
     func configure(withRestaurant restaurant: Restaurant) {
         name.text = restaurant.name
-        type.text = restaurant.type
-        price.text = restaurant.price
+        type.text = restaurant.type.fullTitle
+        price.text = "Prezzo medio: \(restaurant.price.stringValue ?? "")"
         let url = URL(string: restaurant.image)
         image.kf.setImage(with: url)
     }

@@ -11,6 +11,9 @@
 		B9314884257D555E00CBBA59 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9314882257D555E00CBBA59 /* DetailViewController.swift */; };
 		B9314885257D555E00CBBA59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9314883257D555E00CBBA59 /* DetailViewController.xib */; };
 		B9314889257D5CC500CBBA59 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B931488B257D5CC500CBBA59 /* Localizable.strings */; };
+		B9314893257EA12700CBBA59 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9314892257EA12700CBBA59 /* Double.swift */; };
+		B9710AE6257EC81500B5111F /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9710AE5257EC81500B5111F /* MapPoint.swift */; };
+		B9710AE9257EC8E300B5111F /* DetailViewController+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9710AE8257EC8E300B5111F /* DetailViewController+MapKit.swift */; };
 		B9B2B286257C04E200749932 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B285257C04E100749932 /* Services.swift */; };
 		B9B2B289257C04E600749932 /* MockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B288257C04E600749932 /* MockServices.swift */; };
 		B9B2B28C257C04EA00749932 /* FudAppApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2B28B257C04EA00749932 /* FudAppApi.swift */; };
@@ -41,6 +44,9 @@
 		B9314887257D5CB700CBBA59 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B931488A257D5CC500CBBA59 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B931488D257D5CCE00CBBA59 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B9314892257EA12700CBBA59 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		B9710AE5257EC81500B5111F /* MapPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
+		B9710AE8257EC8E300B5111F /* DetailViewController+MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailViewController+MapKit.swift"; sourceTree = "<group>"; };
 		B9B2B285257C04E100749932 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		B9B2B288257C04E600749932 /* MockServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServices.swift; sourceTree = "<group>"; };
 		B9B2B28B257C04EA00749932 /* FudAppApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FudAppApi.swift; sourceTree = "<group>"; };
@@ -91,6 +97,7 @@
 			children = (
 				B9314882257D555E00CBBA59 /* DetailViewController.swift */,
 				B9314883257D555E00CBBA59 /* DetailViewController.xib */,
+				B9710AE8257EC8E300B5111F /* DetailViewController+MapKit.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -128,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				B9B2B2D7257C0D2900749932 /* UIView+Pin.swift */,
+				B9314892257EA12700CBBA59 /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -227,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				B9B4AB752572BD170013C592 /* Restaurant.swift */,
+				B9710AE5257EC81500B5111F /* MapPoint.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -377,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B2B2C1257C073200749932 /* AppCoordinator.swift in Sources */,
+				B9710AE9257EC8E300B5111F /* DetailViewController+MapKit.swift in Sources */,
 				B9B4AB762572BD170013C592 /* Restaurant.swift in Sources */,
 				B9B4AB8025739D630013C592 /* HeaderView.swift in Sources */,
 				B9B2B289257C04E600749932 /* MockServices.swift in Sources */,
@@ -385,6 +395,7 @@
 				B9B4AB4525725E180013C592 /* HomeViewController.swift in Sources */,
 				B9B2B2DB257CE57D00749932 /* ReusableView.swift in Sources */,
 				B9B4AB4125725E180013C592 /* AppDelegate.swift in Sources */,
+				B9314893257EA12700CBBA59 /* Double.swift in Sources */,
 				B9314884257D555E00CBBA59 /* DetailViewController.swift in Sources */,
 				B9B2B2BE257C06E500749932 /* Coordinator.swift in Sources */,
 				B9B2B286257C04E200749932 /* Services.swift in Sources */,
@@ -392,6 +403,7 @@
 				B9B4AB4325725E180013C592 /* SceneDelegate.swift in Sources */,
 				B9B2B2D4257C0ADF00749932 /* LoadingView.swift in Sources */,
 				B9B2B2D8257C0D2900749932 /* UIView+Pin.swift in Sources */,
+				B9710AE6257EC81500B5111F /* MapPoint.swift in Sources */,
 				B9B4AB6F2572B7700013C592 /* HomeCollectionViewCell.swift in Sources */,
 				B9B2B2DE257CE77600749932 /* ErrorView.swift in Sources */,
 			);
