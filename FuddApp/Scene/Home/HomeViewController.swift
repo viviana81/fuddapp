@@ -71,6 +71,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "FuddApp"
         view.backgroundColor = .white
         myCollectionView.pin(to: view)
         loadingView.pin(to: view)
