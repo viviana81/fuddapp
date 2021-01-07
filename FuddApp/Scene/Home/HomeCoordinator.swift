@@ -7,6 +7,7 @@
 
 import UIKit
 import PromiseKit
+import SlideMenuControllerSwift
 
 class HomeCoordinator: Coordinator {
     
@@ -15,10 +16,14 @@ class HomeCoordinator: Coordinator {
     private let services: Services
     let navigation: UINavigationController
     var window: UIWindow
+    let user: User
+    let sideMenu: SideMenuViewController
     
-    init(services: Services, window: UIWindow) {
+    init(services: Services, window: UIWindow, user: User, sideMenu: SideMenuViewController) {
         self.services = services
         self.window = window
+        self.user = user
+        self.sideMenu = sideMenu
         homeViewController = HomeViewController()
         self.navigation = UINavigationController(rootViewController: homeViewController)
     
@@ -26,8 +31,9 @@ class HomeCoordinator: Coordinator {
 
     func start() {
     
+        let slideMenu = SlideMenuController(mainViewController: navigation, leftMenuViewController: sideMenu)
         homeViewController.delegate = self
-        window.rootViewController = navigation
+        window.rootViewController = slideMenu
         getData()
     }
     

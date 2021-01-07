@@ -11,13 +11,31 @@ import MapKit
 
 class DetailViewController: UIViewController {
 
+    enum FavouriteStatus {
+        case favourite
+        case normal
+    }
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageRestaurant: UIImageView!
     @IBOutlet weak var restaurantMap: MKMapView!
+    @IBOutlet weak var favouriteButton: UIButton!
     
+    private var status: FavouriteStatus = .normal {
+        didSet {
+            
+            switch status {
+            case .normal:
+                favouriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            case .favourite:
+                favouriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            }
+        }
+    }
     private let restaurant: Restaurant
+    
     
     init(restaurant: Restaurant) {
         self.restaurant = restaurant
@@ -42,5 +60,20 @@ class DetailViewController: UIViewController {
         restaurantMap.addAnnotation(restaurantPoint)
         restaurantMap.showAnnotations(self.restaurantMap.annotations, animated: true)
     
+    }
+    
+    @IBAction func saveFavourite() {
+    
+        if status == .normal {
+            status = .favourite
+            addFavouriteRestaurant(restaurant)
+            
+        }
+       // let favourite = FavouriteViewController()
+        // navigationController?.pushViewController(favourite, animated: true
+    }
+    
+    func addFavouriteRestaurant(_ restaurant: Restaurant) {
+        
     }
 }

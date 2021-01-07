@@ -1,11 +1,10 @@
 //
-//  ReusableView.swift
+//  Reusable.swift
 //  FuddApp
 //
-//  Created by Viviana Capolvenere on 06/12/20.
+//  Created by Viviana Capolvenere on 29/12/20.
 //
 
-import Foundation
 import UIKit
 
 typealias Reusable = ReusableView & NibLoadableView

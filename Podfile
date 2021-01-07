@@ -9,4 +9,18 @@ target 'FuddApp' do
    pod 'Kingfisher'
    pod 'Moya'
    pod 'PromiseKit'
+   pod 'SlideMenuControllerSwift'
 end
+
+   post_install do |installer|
+
+     installer.pods_project.targets.each do |target|
+           target.build_configurations.each do |config|
+               if ['SlideMenuControllerSwift'].include? target.name
+                   config.build_settings['SWIFT_VERSION'] = '4.0'
+               end
+
+           end
+       end
+   end
+

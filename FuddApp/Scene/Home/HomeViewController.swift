@@ -14,7 +14,11 @@ protocol HomeViewControllerDelegate: class {
 }
 
 class HomeViewController: UIViewController {
-        
+    
+    var main: [Restaurant] = []
+    var favourite: [Restaurant] = []
+    var nextToYou: [Restaurant] = []
+    
     enum State {
         case idle
         case loading
@@ -36,6 +40,9 @@ class HomeViewController: UIViewController {
             case .loaded(let main, let favourite, let nextToYou):
                 loadingView.isHidden = true
                 errorView.isHidden = true
+                self.main = main
+                self.favourite = favourite
+                self.nextToYou = nextToYou
                 createSnapshot(withMain: main, favourite: favourite, nextToYou: nextToYou)
             case .error(let message):
                 loadingView.isHidden = true
@@ -69,6 +76,16 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    lazy var resultSearchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.dimsBackgroundDuringPresentation = false
+        controller.hidesNavigationBarDuringPresentation = false
+        self.definesPresentationContext = true
+        controller.searchResultsUpdater = self
+        controller.searchBar.sizeToFit()
+        return controller
+    }() 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "FuddApp"
@@ -76,12 +93,20 @@ class HomeViewController: UIViewController {
         myCollectionView.pin(to: view)
         loadingView.pin(to: view)
         errorView.pin(to: view)
+        
+        self.navigationItem.titleView = resultSearchController.searchBar
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-icon"), style: .done, target: self, action: #selector(openMenu))
+    }
+    
+    @objc
+    func openMenu() {
+        self.slideMenuController()!.openLeft()
     }
     
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-       
+        
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-           
+            
             let sectionLayoutKind = Section.allCases[sectionIndex]
             switch sectionLayoutKind {
             case .main, .nextToYou:
@@ -89,8 +114,8 @@ class HomeViewController: UIViewController {
             case .favourite:
                 return self.squareItemLayout
             }
-          }
-          return layout
+        }
+        return layout
     }
     
     var fullItemLayout: NSCollectionLayoutSection {
@@ -187,16 +212,44 @@ class HomeViewController: UIViewController {
         return dataSource
     }
     
+    func createDefaultSnapshot() {
+        createSnapshot(withMain: main, favourite: favourite, nextToYou: nextToYou)
+    }
+    
     func createSnapshot(withMain main: [Restaurant], favourite: [Restaurant], nextToYou: [Restaurant]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
-        snapshot.appendSections(Section.allCases)
         
-        snapshot.appendItems(main, toSection: .main)
-        snapshot.appendItems(favourite, toSection: .favourite)
-        snapshot.appendItems(nextToYou, toSection: .nextToYou)
+        if !main.isEmpty {
+            snapshot.appendSections([.main])
+            snapshot.appendItems(main, toSection: .main)
+        }
+        
+        if !favourite.isEmpty {
+            snapshot.appendSections([.favourite])
+            snapshot.appendItems(favourite, toSection: .favourite)
+        }
+        
+        if !nextToYou.isEmpty {
+            snapshot.appendSections([.nextToYou])
+            snapshot.appendItems(nextToYou, toSection: .nextToYou)
+        }
         
         datasource.apply(snapshot, animatingDifferences: true)
     }
+    
+    func filterData(for queryOrNil: String?) {
+        
+        if let query = queryOrNil {
+            let filteredMain = main.filter { $0.name.contains(query) }
+            let filteredFavourite = favourite.filter { $0.name.contains(query) }
+            let filteredNextToYou = nextToYou.filter { $0.name.contains(query) }
+            
+            createSnapshot(withMain: filteredMain, favourite: filteredFavourite, nextToYou: filteredNextToYou)
+        } else {
+            createDefaultSnapshot()
+        }
+    }
+    
 }
 
 extension HomeViewController {
@@ -225,4 +278,17 @@ extension HomeViewController: UICollectionViewDelegate {
         delegate?.userDidTapOnRestaurant(selectedRestaurant)
         
     }
+}
+
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        guard let text = searchController.searchBar.text, !text.isEmpty else {
+            createDefaultSnapshot()
+            return
+        }
+        
+        filterData(for: searchController.searchBar.text)
+    }
+    
 }

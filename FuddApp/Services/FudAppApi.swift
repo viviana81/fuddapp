@@ -12,25 +12,34 @@ enum FuddAppApi: TargetType {
     case getMain
     case getFavourite
     case getNextToYou
+    case getLoginRequest(email: String, password: String)
+    case getSignupRequest(request: SignupRequest)
+    case updateProfileRequest(request: UpdateProfileRequest)
     
     var baseURL: URL {
-        return URL(string: "https://private-dd2478-hellasapi.apiary-mock.com/restaurant/")!
+        return URL(string: "https://private-dd2478-hellasapi.apiary-mock.com/")!
     }
     
     var path: String {
         switch self {
         case .getMain:
-            return "main"
+            return "restaurant/main"
         case .getFavourite:
-            return "favourite"
+            return "restaurant/favourite"
         case .getNextToYou:
-            return "nextToYou"
+            return "restaurant/nextToYou"
+        case .getLoginRequest:
+            return "login"
+        case .getSignupRequest:
+            return "signup"
+        case .updateProfileRequest:
+            return "updateProfile"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getMain, .getFavourite, .getNextToYou:
+        case .getMain, .getFavourite, .getNextToYou, .getLoginRequest, .getSignupRequest, .updateProfileRequest:
             return .get
             
         }
@@ -42,7 +51,7 @@ enum FuddAppApi: TargetType {
     
     var task: Task {
         switch self {
-        case .getFavourite, .getMain, .getNextToYou:
+        case .getFavourite, .getMain, .getNextToYou, .getLoginRequest, .getSignupRequest, .updateProfileRequest:
             return .requestPlain
         }
     }

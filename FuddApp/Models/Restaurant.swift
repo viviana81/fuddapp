@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Restaurant: Decodable, Hashable {
+struct Restaurant: Codable, Hashable {
     
     let id: String
     let name: String
@@ -26,7 +26,7 @@ struct RestaurantData {
 
 }
 
-enum RestaurantType: String, Decodable {
+enum RestaurantType: String, Codable {
     case sicilian
     case sushi
     case mexican
@@ -49,7 +49,7 @@ enum RestaurantType: String, Decodable {
     }
 }
 
-struct Coordinate: Decodable, Hashable {
+struct Coordinate: Codable, Hashable {
     let latitude: Double
     let longitude: Double
     

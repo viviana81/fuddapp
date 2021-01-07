@@ -4,6 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +15,7 @@
             <connections>
                 <outlet property="addressLabel" destination="cHw-vp-NDR" id="GHx-Ut-jav"/>
                 <outlet property="descriptionLabel" destination="VPM-hl-WIw" id="bSJ-IZ-AQI"/>
+                <outlet property="favouriteButton" destination="8rk-88-3Ci" id="1we-vg-a3B"/>
                 <outlet property="imageRestaurant" destination="AFV-6Y-tZu" id="swC-Ar-WQ1"/>
                 <outlet property="nameLabel" destination="Ru8-Dv-hT6" id="jPA-oQ-kgi"/>
                 <outlet property="restaurantMap" destination="I8d-JO-95a" id="r3T-qK-bkV"/>
@@ -39,17 +42,27 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFz-ST-5OI">
                                     <rect key="frame" x="0.0" y="304" width="414" height="102"/>
                                     <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rk-88-3Ci">
+                                            <rect key="frame" x="350" y="24" width="48" height="22"/>
+                                            <color key="tintColor" name="green-fuddApp"/>
+                                            <state key="normal">
+                                                <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="saveFavourite" destination="-1" eventType="touchUpInside" id="QhU-D1-vUE"/>
+                                            </connections>
+                                        </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y8y-tj-b8h">
-                                            <rect key="frame" x="8" y="8" width="398" height="86"/>
+                                            <rect key="frame" x="8" y="8" width="326" height="86"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ru8-Dv-hT6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="398" height="57.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="326" height="57.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descrizione" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHw-vp-NDR">
-                                                    <rect key="frame" x="0.0" y="65.5" width="398" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="65.5" width="326" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -60,9 +73,12 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="y8y-tj-b8h" firstAttribute="leading" secondItem="qFz-ST-5OI" secondAttribute="leading" constant="8" id="RNg-wx-YW9"/>
+                                        <constraint firstAttribute="trailing" secondItem="8rk-88-3Ci" secondAttribute="trailing" constant="16" id="S5Z-he-H6W"/>
                                         <constraint firstAttribute="bottom" secondItem="y8y-tj-b8h" secondAttribute="bottom" constant="8" id="TyY-YT-dwz"/>
+                                        <constraint firstItem="8rk-88-3Ci" firstAttribute="leading" secondItem="y8y-tj-b8h" secondAttribute="trailing" constant="16" id="Xcz-j6-zXW"/>
+                                        <constraint firstItem="8rk-88-3Ci" firstAttribute="top" secondItem="qFz-ST-5OI" secondAttribute="top" constant="24" id="Zah-hG-T9w"/>
                                         <constraint firstItem="y8y-tj-b8h" firstAttribute="top" secondItem="qFz-ST-5OI" secondAttribute="top" constant="8" id="cKS-CL-8jy"/>
-                                        <constraint firstAttribute="trailing" secondItem="y8y-tj-b8h" secondAttribute="trailing" constant="8" id="rjP-Ub-rJ3"/>
+                                        <constraint firstAttribute="trailing" secondItem="y8y-tj-b8h" secondAttribute="trailing" constant="80" id="rjP-Ub-rJ3"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZX-QQ-4dO">
@@ -155,6 +171,10 @@
         </view>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <namedColor name="green-fuddApp">
+            <color red="0.37099999189376831" green="0.57700002193450928" blue="0.18400000035762787" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
